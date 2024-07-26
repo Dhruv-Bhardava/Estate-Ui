@@ -1,0 +1,167 @@
+@import "../../responsive.scss";
+
+nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  a {
+    transition: all 0.4s ease;
+
+    @include sm {
+      display: none;
+    }
+    &:hover {
+      scale: 1.05;
+    }
+  }
+
+  .left {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    .logo {
+      font-size: 20px;
+      font-weight: bolder;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      img {
+        width: 28px;
+      }
+
+      span {
+        @include md {
+          display: none;
+        }
+
+        @include sm {
+          display: initial;
+        }
+      }
+    }
+  }
+
+  .right {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    background-color: #fcf5f3;
+
+    @include md {
+      background-color: transparent;
+    }
+
+
+    a {
+      padding: 12px 24px;
+      margin: 20px;
+    }
+
+    .user{
+      display: flex;
+      align-items: center;
+
+      img{
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      span{
+        @include sm{
+          display: none;
+        }
+      }
+
+      .profile{
+        padding: 10px 24px;
+        background-color: #fece51;
+        cursor: pointer;
+        border: none;
+        position: relative;
+
+        .notification{
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          height: 25px;
+          width: 25px;
+          border-radius: 50%;
+          background-color: red;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+        }
+      }
+    }
+
+    .register {
+      background-color: #fece51;
+    }
+
+    .menuIcon {
+      display: none;
+      z-index: 999;
+
+      img {
+        height: 35px;
+        width: 35px;
+        cursor: pointer;
+      }
+
+      @include sm {
+        display: initial;
+      }
+    }
+
+    .menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 0;
+      background-color: #000;
+      color: #fff;
+      height: 100%;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all .5s ease;
+      pointer-events: none;
+
+      // @include lg{
+      //   pointer-events: none;
+      // }
+      // @include md{
+      //   pointer-events: none;
+      // }
+
+      a {
+        margin: 10px;
+      }
+
+      &.active {
+        opacity: 1;
+        color: #fff;
+      }
+
+      @include sm {
+        a {
+          display: initial;
+        }
+      }
+    }
+  }
+}
