@@ -68,22 +68,29 @@
         &:nth-child(3) {
           width: auto;
         }
-        
       }
     }
 
-    button {
-      border: none;
-      background-color: #fece51;
-      cursor: pointer;
+    
+    a {
       flex: 1;
+      background-color: #fece51;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      @include sm {
-        padding: 10px;
-      }
+      button {
+        border: none;
+        background-color: #fece51;
+        cursor: pointer;
 
-      img {
-        width: 25px;
+        @include sm {
+          padding: 10px;
+        }
+
+        img {
+          width: 25px;
+        }
       }
     }
   }

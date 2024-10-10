@@ -1,64 +1,68 @@
 import HomePage from "./routes/Homepage/HomePage";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ListPage from "./routes/Listpage/ListPage";
-import Layout from "./routes/Layout/Layout";
+import  {Layout, RequireAuth } from "./routes/Layout/Layout";
 import SinglePage from "./routes/SinglePage/SinglePage";
 import ProfilePage from "./routes/Profilepage/ProfilePage";
 import Register from "./routes/Register/Register";
 import Login from "./routes/Login/Login";
 import NewPostPage from "./routes/NewPostPage/NewPostPage";
 import ProfileUpdatePage from "./routes/ProfileUpdatePage/ProfileUpdatePage";
+import { listPostLoader, profilePageLoader, singlePostLoader } from "./lib/loaders.js";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout/>,
+      element: <Layout />,
       children: [
         {
           path: "/",
-          element: <HomePage/>
+          element: <HomePage />,
         },
         {
           path: "/list",
-          element: <ListPage/>
+          element: <ListPage />,
+          loader: listPostLoader,
         },
         {
           path: "/:id",
-          element: <SinglePage/>
+          element: <SinglePage />,
+          loader: singlePostLoader,
         },
-        {
-          path: "/profile",
-          element: <ProfilePage/>
-        },
+
         {
           path: "/register",
-          element: <Register/>
+          element: <Register />,
         },
         {
           path: "/login",
-          element: <Login/>
+          element: <Login />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <RequireAuth />,
+      children: [
+        {
+          path: "/profile",
+          element: <ProfilePage />,
+          loader: profilePageLoader,
         },
         {
-          path: "/newpost",
-          element: <NewPostPage/>
+          path: "/profile/update",
+          element: <ProfileUpdatePage />,
         },
         {
-          path: "/updateprofile",
-          element: <ProfileUpdatePage/>
-        }
-      ]
-    }
+          path: "/add",
+          element: <NewPostPage />,
+        },
+      ],
+    },
   ]);
 
-  return (
-   
-
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
